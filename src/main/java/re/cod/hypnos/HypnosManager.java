@@ -32,7 +32,7 @@ public class HypnosManager {
     }
 
     public void trySkipNight(ServerPlayerEntity player) {
-        ServerWorld serverWorld = player.getServerWorld();
+        ServerWorld serverWorld = player.getWorld();
         if (cfg.ignoreSleepDuringDay && serverWorld.isDay()) {
             return;
         }
@@ -51,7 +51,7 @@ public class HypnosManager {
     public void onWakeUp(ServerPlayerEntity player) {
         if (!cfg.enableWakeUp)
             return;
-        ServerWorld serverWorld = player.getServerWorld();
+        ServerWorld serverWorld = player.getWorld();
         int sleeping = (int) serverWorld.getPlayers().stream().filter(LivingEntity::isSleeping).count();
         int players = serverWorld.getPlayers().size();
         int required = players * cfg.playerPercentage / 100;

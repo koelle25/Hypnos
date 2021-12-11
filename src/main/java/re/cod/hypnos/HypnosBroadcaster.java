@@ -21,7 +21,7 @@ public class HypnosBroadcaster {
     }
 
     public void sendNotEnoughPlayersSleepingMessage(ServerPlayerEntity player, int sleeping, int required) {
-        ServerWorld serverWorld = player.getServerWorld();
+        ServerWorld serverWorld = player.getWorld();
         Map<String, String> stringValues = new HashMap<>();
         stringValues.put("player", player.getDisplayName().asString());
         stringValues.put("sleeping", Integer.toString(sleeping));
@@ -30,7 +30,7 @@ public class HypnosBroadcaster {
         String msg = StrSubstitutor.replace(cfg.notEnoughPlayerMessage, stringValues, "{", "}");
         Text text = new LiteralText(msg);
         PlayerManager playerManager = serverWorld.getServer().getPlayerManager();
-        playerManager.broadcastChatMessage(text, MessageType.CHAT, Util.NIL_UUID);
+        playerManager.broadcast(text, MessageType.CHAT, Util.NIL_UUID);
     }
 
     public void sendSkipNightMessage(ServerWorld serverWorld, int sleeping, int required) {
@@ -41,11 +41,11 @@ public class HypnosBroadcaster {
         String msg = StrSubstitutor.replace(cfg.nightSkipMessage, stringValues, "{", "}");
         Text text = new LiteralText(msg);
         PlayerManager playerManager = serverWorld.getServer().getPlayerManager();
-        playerManager.broadcastChatMessage(text, MessageType.CHAT, Util.NIL_UUID);
+        playerManager.broadcast(text, MessageType.CHAT, Util.NIL_UUID);
     }
 
     public void sendWakeUpMessage(ServerPlayerEntity player, int sleeping, int required) {
-        ServerWorld serverWorld = player.getServerWorld();
+        ServerWorld serverWorld = player.getWorld();
         Map<String, String> stringValues = new HashMap<>();
         stringValues.put("player", player.getDisplayName().asString());
         stringValues.put("sleeping", Integer.toString(sleeping));
@@ -54,6 +54,6 @@ public class HypnosBroadcaster {
         String msg = StrSubstitutor.replace(cfg.wakeUpMessage, stringValues, "{", "}");
         Text text = new LiteralText(msg);
         PlayerManager playerManager = serverWorld.getServer().getPlayerManager();
-        playerManager.broadcastChatMessage(text, MessageType.CHAT, Util.NIL_UUID);
+        playerManager.broadcast(text, MessageType.CHAT, Util.NIL_UUID);
     }
 }
